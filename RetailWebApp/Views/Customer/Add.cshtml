@@ -1,0 +1,36 @@
+@model RetailWebApp.Models.Customer
+
+@{
+    ViewBag.Title = "Add Customer";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-4">
+    <h2>Add New Customer</h2>
+    <form asp-action="Create" asp-controller="Customer" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="CustomerFirstName" class="form-label">Name</label>
+            <input asp-for="CustomerFirstName" class="form-control" placeholder="Enter first name" />
+            <span asp-validation-for="CustomerFirstName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CustomerLastName" class="form-label">Surname</label>
+            <input asp-for="CustomerLastName" class="form-control" placeholder="Enter surname" />
+            <span asp-validation-for="CustomerLastName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CustomerEmail" class="form-label">Address</label>
+            <input asp-for="CustomerEmail" class="form-control" placeholder="Enter address" />
+            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Add Customer</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
