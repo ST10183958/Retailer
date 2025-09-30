@@ -59,6 +59,8 @@ public class TableStorageWService
             throw new InvalidOperationException(ex.Message);
         }
     }
+    
+    
     //add Product
     public async Task AddProduct(Products products)
     {
@@ -69,7 +71,7 @@ public class TableStorageWService
 
         try
         {
-            await _CustomerTableClient.AddEntityAsync(products);
+            await _ProductTableClient.AddEntityAsync(products);
         }
         catch (RequestFailedException ex)
         {
@@ -77,7 +79,7 @@ public class TableStorageWService
         }
     }
     
-    //deletate customer
+    //delete customer
     public async Task DeleteCustomer(string partitionKey, string rowKey)
     {
         await _CustomerTableClient.DeleteEntityAsync(partitionKey, rowKey);

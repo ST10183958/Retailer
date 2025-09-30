@@ -10,11 +10,12 @@ var configuration = builder.Configuration;
 //Register tablestorage with configuration
 builder.Services.AddSingleton(new TableStorageWService(configuration.GetConnectionString("AzureStorage")));
 
+builder.Services.AddSingleton(new BlobService(configuration.GetConnectionString("AzureStorage")));
 //Register QueueService with configuration
 builder.Services.AddSingleton<QueueService>(sp =>
 {
     var connectionString = configuration.GetConnectionString("AzureStorage");
-    return new QueueService(connectionString, "order");
+    return new QueueService(connectionString, "orders");
 });
 
 //Register file share 

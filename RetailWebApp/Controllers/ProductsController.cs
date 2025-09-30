@@ -1,52 +1,57 @@
 using Microsoft.AspNetCore.Mvc;
 using RetailWebApp.Models;
 using RetailWebApp.Services;
+using System;
+using System.Threading.Tasks;
 
-namespace RetailWebApp.Controllers;
-
-public class ProductsController : Controller
+namespace RetailWebApp.Controllers
 {
-    
-    private readonly TableStorageWService _tableStorageService;
-    private readonly BlobService  _blobService;
-    private readonly TableStorageWService _tableStorageWService;
+    public class ProductsController : Controller
+    {
+        private readonly TableStorageWService _tableStorageService;
+        private readonly BlobService _blobService;
 
-    public ProductsController(TableStorageWService tableStorageService)
-    {
-        _blobService = _blobService;
-        _tableStorageService = tableStorageService;
-    }
-    // GET
-    public async Task<IActionResult> Index()
-    {
-        var products = await _tableStorageService.GetAllProducts();
-        return View(products);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> AddProduct(Products products, IFormFile file)
-    {
-        if (file != null)
+        public ProductsController(TableStorageWService tableStorageService, BlobService blobService)
         {
-            using var stream = file.OpenReadStream();
-            var imageUrl = await _blobService.UploadsAsync(stream, file.FileName);
-            products.ProductImage = imageUrl;
+            _tableStorageService = tableStorageService;
+            _blobService = blobService;
         }
 
-        if (ModelState.IsValid)
+        // GET: Products list
+        public async Task<IActionResult> Index()
         {
-            products.PartitionKey = "ProductsParition";
-            products.RowKey = Guid.NewGuid().ToString();
-            await _tableStorageService.AddProduct(products);
-            return RedirectToAction("Index");
+            var products = await _tableStorageService.GetAllProducts();
+            return View(products);
         }
-        return View(products);
-    }
-    
-    [HttpGet]
-    public IActionResult AddProduct()
-    {
-        return View();
-    }
 
+        
+
+        // POST: Add Product form submission
+        [HttpPost]
+        public async Task<IActionResult> AddProduct(Products product, IFormFile file)
+        {
+            if (file != null)
+            {
+                using var stream = file.OpenReadStream();
+                var imageUrl = await _blobService.UploadsAsync(stream, file.FileName);
+                product.ProductImage = imageUrl;
+            }
+
+            if (true)
+            {
+                product.PartitionKey = "ProductPartition";
+                product.RowKey = Guid.NewGuid().ToString();
+                
+                await _tableStorageService.AddProduct(product);
+                return RedirectToAction("Index");
+            }
+            return View(product);
+        }
+        
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+    }
 }

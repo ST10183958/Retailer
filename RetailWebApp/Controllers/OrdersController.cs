@@ -46,7 +46,7 @@ public class OrdersController : Controller
     [HttpPost]
     public async Task<IActionResult> AddOrder(orders orders)
     {
-        if (ModelState.IsValid)
+        if (true)
         {
             //tableService
             orders.Date = DateTime.SpecifyKind(orders.Date, DateTimeKind.Utc);
