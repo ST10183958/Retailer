@@ -18,14 +18,21 @@ namespace RetailWebApp.Controllers
         }
 
         // GET: Products list
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var products = await _tableStorageService.GetAllProducts();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products
+                    .Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+            ViewBag.SearchString = searchString;
             return View(products);
         }
 
         
-
         // POST: Add Product form submission
         [HttpPost]
         public async Task<IActionResult> AddProduct(Products product, IFormFile file)
