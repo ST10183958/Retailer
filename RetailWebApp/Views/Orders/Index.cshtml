@@ -24,10 +24,11 @@
         {
             <tr>
                 <td>@order.OrderId</td>
+                <td>@order.Date</td>
                 <td>@order.PartitionKey</td>
                 <td>@order.RowKey</td>
                 <td>@order.Timestamp?.UtcDateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                <td>@order.ETag.ToString()</td>
+
             </tr>
         }
         </tbody>

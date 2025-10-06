@@ -52,6 +52,7 @@ public class OrdersController : Controller
             orders.Date = DateTime.SpecifyKind(orders.Date, DateTimeKind.Utc);
             orders.PartitionKey = "OrderPartition";
             orders.RowKey = Guid.NewGuid().ToString();
+
             await _tableStorageService.AddOrder(orders);
             //Message queue
             string message = $"New Order added by User {orders.ID}" + $"for product {orders.ProductID}" + $"Order Date: {orders.Date}";

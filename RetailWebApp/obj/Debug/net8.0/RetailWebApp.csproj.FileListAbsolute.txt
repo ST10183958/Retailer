@@ -172,3 +172,4 @@
 /home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/bin/Debug/net8.0/System.IO.Hashing.dll
 /home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/bin/Debug/net8.0/Azure.Storage.Queues.dll
 /home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/bin/Debug/net8.0/Azure.Storage.Files.Shares.dll
+/home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/obj/Debug/net8.0/RetailWebApp.sourcelink.json

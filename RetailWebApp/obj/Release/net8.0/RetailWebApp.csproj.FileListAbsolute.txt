@@ -172,3 +172,4 @@
 /home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/obj/Release/net8.0/RetailWebApp.pdb
 /home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/obj/Release/net8.0/RetailWebApp.genruntimeconfig.cache
 /home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/obj/Release/net8.0/ref/RetailWebApp.dll
+/home/shinzo/RiderProjects/RetailWebApp/RetailWebApp/obj/Release/net8.0/RetailWebApp.sourcelink.json
